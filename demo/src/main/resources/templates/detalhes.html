@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Netflix Feedback</title>
+    <style>
+        body { background-color: #141414; color: white; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; margin: 0; }
+        .container { display: flex; padding: 50px; flex-wrap: wrap; }
+        .poster { width: 300px; border-radius: 8px; box-shadow: 0 0 20px rgba(0,0,0,0.5); height: fit-content; }
+        .info { margin-left: 40px; max-width: 600px; flex: 1; }
+        h1 { font-size: 3rem; margin-bottom: 10px; color: #e50914; }
+        p { font-size: 1.1rem; color: #b3b3b3; line-height: 1.6; }
+        hr { border: 0; border-top: 1px solid #333; margin: 30px 0; }
+        
+        /* Área de Comentários */
+        .area-comentarios { margin-top: 30px; background: #1f1f1f; padding: 20px; border-radius: 8px; }
+        textarea { width: 100%; background: #333; color: white; border: 1px solid #444; padding: 10px; border-radius: 4px; box-sizing: border-box; }
+        .btn-comentar { background-color: #e50914; color: white; border: none; padding: 12px 25px; border-radius: 4px; cursor: pointer; font-weight: bold; margin-top: 10px; }
+        .btn-comentar:hover { background-color: #ff0a16; }
+        
+        .card-feedback { background: #262626; padding: 15px; margin-bottom: 15px; border-left: 5px solid #e50914; border-radius: 4px; }
+        .autor { color: #e50914; font-weight: bold; display: block; margin-bottom: 5px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img class="poster" th:src="${'https://image.tmdb.org/t/p/w500' + filme.poster_path}" alt="Poster">
+        
+        <div class="info">
+            <h1 th:text="${filme.title}">Título</h1>
+            <p th:text="${filme.overview}">Sinopse...</p>
+            
+            <div th:if="${filme.logosStreaming != null}" style="margin-top: 20px;">
+                <p style="color: white; font-weight: bold; margin-bottom: 10px;">Disponível em:</p>
+                    <div style="display: flex; gap: 10px;">
+                        <img th:each="logo : ${filme.logosStreaming}" 
+                        th:src="${logo}" 
+                        style="width: 45px; border-radius: 8px; border: 1px solid #333;" 
+                        title="Streaming">
+                    </div>
+            </div>
+            <hr>
+
+            <div class="area-comentarios">
+                <h3>Deixe seu Feedback</h3>
+                <form th:action="@{/filmes/{id}/comentar(id=${filme.id})}" method="post">
+                    <textarea name="texto" placeholder="O que você achou deste filme?" rows="4" required></textarea>
+                    <button type="submit" class="btn-comentar">POSTAR FEEDBACK</button>
+                </form>
+            </div>
+
+            <hr>
+
+            <h3>Feedbacks da Comunidade</h3>
+            <div th:if="${#lists.isEmpty(comentarios)}">
+                <p style="font-style: italic;">Nenhum comentário ainda. Seja o primeiro!</p>
+            </div>
+            <div th:each="c : ${comentarios}" class="card-feedback">
+                <span class="autor" th:text="${c.autor}">Usuário</span>
+                <span th:text="${c.texto}">Comentário aqui</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+</html>

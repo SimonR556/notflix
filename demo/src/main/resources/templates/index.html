@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Netflix Search</title>
+    <style>
+        body { background-color: #141414; color: white; font-family: Arial; text-align: center; }
+        .busca-container { padding: 50px; background: linear-gradient(to bottom, #000, #141414); }
+        input { padding: 10px; width: 300px; border-radius: 4px; border: none; }
+        button { padding: 10px 20px; background: #e50914; color: white; border: none; cursor: pointer; border-radius: 4px; }
+        .grid { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; padding: 20px; }
+        .card { width: 150px; transition: transform .2s; }
+        .card:hover { transform: scale(1.1); }
+        img { width: 100%; border-radius: 4px; }
+        a { text-decoration: none; color: white; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <div class="busca-container">
+        <h1>O que vamos assistir hoje?</h1>
+        <form action="/" method="get">
+            <input type="text" name="nome" placeholder="Digite o nome de um filme...">
+            <button type="submit">Pesquisar</button>
+        </form>
+    </div>
+<h2 th:text="${tituloPagina}" style="margin-top: 20px; color: #e50914;"></h2>
+    <div class="grid">
+        <div th:each="f : ${resultados}" class="card">
+            <a th:href="@{/filmes/{id}(id=${f.id})}">
+                <img th:if="${f.poster_path != null}" th:src="${'https://image.tmdb.org/t/p/w200' + f.poster_path}">
+                <p th:text="${f.title}"></p>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
