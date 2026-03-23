@@ -1,0 +1,1 @@
+O Notflix é uma aplicação Full Stack desenvolvida em Java com Spring Boot. O projeto consome a API do TMDB (The Movie Database) para listar filmes populares, realizar buscas em tempo real e exibir detalhes como sinopse e onde assistir (streaming). Além disso, possui um sistema de feedback onde usuários podem deixar comentários armazenados em um banco de dados local.
