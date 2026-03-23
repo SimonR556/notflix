@@ -3,7 +3,7 @@ O Notflix é uma aplicação Full Stack desenvolvida em Java com Spring Boot. O 
 como rodar o projeto:
 
 1. clone o repositorio
-2. crie uma conta no [TheMovieDB](https://www.themoviedb.org) e gere ua chave de API gratuita
+2. crie uma conta no [TheMovieDB](https://www.themoviedb.org) e gere sua chave de API gratuita
 3. abra o arquivo src/main/resources/application.properties e insira sua chave
 4. execute a aplicação digitando dentro da pasta do projeto ./gradlew bootRun
 5. acesse pelo navegador -> http://localhost:8080
