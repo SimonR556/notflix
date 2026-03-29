@@ -2,7 +2,7 @@ package com.example.demo.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.List;
-import org.springframework.web.client.RestTemplate;
+
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ResultadoBusca {

@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import com.example.demo.model.Comentario;
 import com.example.demo.repository.ComentarioRepository;
-import java.util.List;
+//import java.util.List;
 @Controller 
 @RequestMapping("/filmes")
 
